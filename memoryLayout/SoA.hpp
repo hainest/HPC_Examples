@@ -4,6 +4,7 @@
 #include <vector>
 #include "stopwatch.hpp"
 #include "aligned_allocator.hpp"
+#include <immintrin.h>
 
 template<typename T>
 struct SoA {

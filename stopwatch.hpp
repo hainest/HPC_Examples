@@ -4,15 +4,16 @@
 #include <chrono>
 
 class stopwatch {
+	using namespace std::chrono;
 public:
 	stopwatch() {
-		begin = end = std::chrono::steady_clock::time_point::min();
+		begin = end = std::chrono::high_resolution_clock::time_point::min();
 	}
 	inline void start(void) {
-		 begin = std::chrono::steady_clock::now();
+		 begin = std::chrono::high_resolution_clock::now();
 	}
 	inline void stop(void) {
-		end = std::chrono::steady_clock::now();
+		end = std::chrono::high_resolution_clock::now();
 	}
 
 	using count_type = std::chrono::duration<float,std::ratio<1,1000>>;
@@ -21,8 +22,8 @@ public:
 		return std::chrono::duration_cast<T>(end - begin).count();
 	}
 private:
-	std::chrono::time_point<std::chrono::steady_clock> begin;
-	std::chrono::time_point<std::chrono::steady_clock> end;
+	std::chrono::time_point<std::chrono::high_resolution_clock> begin;
+	std::chrono::time_point<std::chrono::high_resolution_clock> end;
 };
 
 #endif

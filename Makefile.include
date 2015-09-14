@@ -1,0 +1,12 @@
+CXX = g++ -std=c++11 -fopenmp -mfpmath=sse -march=native
+WFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = $(WFLAGS) -O0 -g
+INC = -I..
+
+$(EXEC) : $(OBJS)
+	@ echo Building $@...
+	@ $(CXX) $(INC) $(CXXFLAGS) $(OBJS) -o $@
+
+%.o : %.cpp
+	@ echo Compiling $<...
+	@ $(CXX) $(INC) $(CXXFLAGS) -c $< -o $@

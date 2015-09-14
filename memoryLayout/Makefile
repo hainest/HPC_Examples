@@ -1,19 +1,15 @@
 OBJS = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
-EXEC = loop_unrolling
+EXEC = memory_layout
 
 include ../Makefile.include
 
-all: $(EXEC)
-
 .PHONY: all clean release
+
+all: $(EXEC)
 
 release : CXXFLAGS = $(WFLAGS) -O3
 release : $(EXEC)
-
-rand_fill.o : rand_fill.cpp
-	@ echo Compiling $<...
-	@ $(CXX) $(INC) $(CXXFLAGS) -c -O3 $< -o $@
 	
 clean:
-	@ echo Cleaning loopUnrolling...
+	@ echo Cleaning memoryLayout...
 	@ rm -f $(OBJS) $(EXEC)

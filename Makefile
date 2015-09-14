@@ -1,30 +1,14 @@
-CXX = g++ -std=c++11 -fopenmp -mfpmath=sse -march=native
-WFLAGS = -Wall -Wextra -Werror
-CXXFLAGS = $(WFLAGS) -O0 -g
-
-OBJS = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
-EXEC = test
-
-all: $(EXEC)
-
 .PHONY: all clean release
+.DEFAULT_GOAL = all
 
-release : CXXFLAGS = $(WFLAGS) -O3
-release : $(EXEC)
+release: Makefile
+	@ $(MAKE) --no-print-directory -C loopUnrolling release
+	@ $(MAKE) --no-print-directory -C memoryLayout release
 
-$(EXEC) : $(OBJS)
-	@ echo Building $@...
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
-
-rand_fill.o : rand_fill.cpp
-	@ echo Compiling $<...
-	$(CXX) $(CXXFLAGS) -c -O3 $< -o $@
-	
-%.o : %.cpp
-	@ echo Compiling $<...
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+all: Makefile
+	@ $(MAKE) --no-print-directory -C loopUnrolling all
+	@ $(MAKE) --no-print-directory -C memoryLayout all
 	
 clean:
-	@ rm -f $(OBJS) $(EXEC)
 	@ $(MAKE) --no-print-directory -C loopUnrolling clean
-	@ $(MAKE) --no-print-directory -C readingNumbers clean
+	@ $(MAKE) --no-print-directory -C memoryLayout clean

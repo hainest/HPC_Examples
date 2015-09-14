@@ -3,11 +3,12 @@
 
 #include <vector>
 #include "stopwatch.hpp"
+#include <immintrin.h>
 
 template<typename T>
 struct AoS {
 	T x, y, z;
-	char a[64-3*sizeof(T)];
+//	char a[64-3*sizeof(T)];
 }__attribute__((packed));
 
 template<typename dataType, typename collectionType>
@@ -29,7 +30,7 @@ dataType doAoS(const size_t size, collectionType &timings) {
 	}
 	timer.stop();
 	auto baseSum = sum;
-	timings.emplace_back("AoS", sum, timer.count());
+	timings.emplace_back("AoS (plain)", sum, timer.count());
 
 	sum = 0.0;
 	timer.start();

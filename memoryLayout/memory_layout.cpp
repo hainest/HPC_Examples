@@ -3,9 +3,9 @@
 #include <string>
 #include <iomanip>
 #include <tuple>
-#include "sum.hpp"
 #include "AoS.hpp"
 #include "SoA.hpp"
+#include <algorithm>
 
 int main() {
 	using valType = float;
@@ -14,8 +14,8 @@ int main() {
 
 	std::vector<tupType> timings;
 
-	auto baseSum = doAoS<valType,decltype(timings)>(size,timings);
-	doSoA<valType,decltype(timings)>(size,timings);
+	auto baseSum = doAoS<valType>(size,timings);
+	doSoA<valType>(size,timings);
 
 
 	std::sort(timings.begin(),timings.end(),[](const tupType &a, const tupType &b){return std::get<2>(a) < std::get<2>(b);});
@@ -26,7 +26,7 @@ int main() {
 			  << std::internal << std::setw(15) << "Time (ms)\n";
 
 	std::cout << std::setfill('-') << std::setw(80) << "\n" << std::setfill(' ');
-	auto pdiff = [](valType a, valType b) {return 100.0f * std::abs(a-b) / ((a+b)/2.0f);};
+	auto pdiff = [](valType a, valType b) {return 100.0f * std::fabs(a-b) / ((a+b)/2.0f);};
 	for (const auto &x : timings) {
 		std::cout << "\t"
 				  << std::left     << std::setw(28) << std::get<0>(x)
