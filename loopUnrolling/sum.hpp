@@ -58,19 +58,6 @@ dataType doSum(const size_t size, collectionType &timings) {
 	timings.emplace_back("unroll(4+2)", sum, clock.count());
 
 	sum = 0.0;
-	clock.start();
-	register dataType rsum1 { }, rsum2 { };
-	for (unsigned i = 0; i < v.size(); i += 4) {
-		rsum1 += v[i];
-		rsum1 += v[i + 1];
-		rsum2 += v[i + 2];
-		rsum2 += v[i + 3];
-	}
-	sum = rsum1 + rsum2;
-	clock.stop();
-	timings.emplace_back("unroll(4+2,register)", sum, clock.count());
-
-	sum = 0.0;
 	sum1 = sum2 = 0.0;
 	dataType sum3 { }, sum4 { };
 	clock.start();
@@ -98,35 +85,6 @@ dataType doSum(const size_t size, collectionType &timings) {
 	sum = sum1 + sum2 + sum3 + sum4;
 	clock.stop();
 	timings.emplace_back("unroll(16+4)", sum, clock.count());
-
-	sum = 0.0;
-	register dataType rsum3 { }, rsum4 { };
-	rsum1 = rsum2 = 0.0;
-	clock.start();
-	for (unsigned i = 0; i < v.size(); i += 16) {
-		rsum1 += v[i];
-		rsum1 += v[i + 1];
-		rsum2 += v[i + 2];
-		rsum2 += v[i + 3];
-
-		rsum1 += v[i + 4];
-		rsum1 += v[i + 5];
-		rsum2 += v[i + 6];
-		rsum2 += v[i + 7];
-
-		rsum1 += v[i + 8];
-		rsum1 += v[i + 9];
-		rsum2 += v[i + 10];
-		rsum2 += v[i + 11];
-
-		rsum1 += v[i + 12];
-		rsum1 += v[i + 13];
-		rsum2 += v[i + 14];
-		rsum2 += v[i + 15];
-	}
-	sum = rsum1 + rsum2 + rsum3 + rsum4;
-	clock.stop();
-	timings.emplace_back("unroll(16+4,register)", sum, clock.count());
 
 	sum = 0.0;
 	clock.start();
