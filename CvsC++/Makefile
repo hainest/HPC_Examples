@@ -30,4 +30,4 @@ clean:
 	@ rm -rf $(EXEC)
 
 dist-clean: clean
-	@ rm -rf *.out *.ps
+	@ rm -rf *.out *.ps numbers*
