@@ -17,3 +17,5 @@ rand_fill.o : rand_fill.cpp
 clean:
 	@ echo Cleaning loopUnrolling...
 	@ rm -f $(OBJS) $(EXEC)
+
+dist-clean: clean

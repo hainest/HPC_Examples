@@ -13,3 +13,5 @@ release : $(EXEC)
 clean:
 	@ echo Cleaning memoryLayout...
 	@ rm -f $(OBJS) $(EXEC)
+
+dist-clean: clean
