@@ -4,7 +4,6 @@
 #include <chrono>
 
 class stopwatch {
-	using namespace std::chrono;
 public:
 	stopwatch() {
 		begin = end = std::chrono::high_resolution_clock::time_point::min();
@@ -16,10 +15,10 @@ public:
 		end = std::chrono::high_resolution_clock::now();
 	}
 
-	using count_type = std::chrono::duration<float,std::ratio<1,1000>>;
-	template <typename T = count_type>
-	inline typename T::rep count(void) {
-		return std::chrono::duration_cast<T>(end - begin).count();
+	template <typename count_type = float, typename period = std::ratio<1,1000>>
+	inline count_type count(void) {
+		using namespace std::chrono;
+		return duration_cast<duration<count_type,period>>(end - begin).count();
 	}
 private:
 	std::chrono::time_point<std::chrono::high_resolution_clock> begin;
