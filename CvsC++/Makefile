@@ -4,21 +4,21 @@ CCFLAGS = -Wall -Wextra -std=c99 -O3 -march=native -DNDEBUG
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++14 -O3 -march=native -DNDEBUG
 
-EXEC = test_c test_cpp testD_cpp gen_files
+EXEC = sort_c sort_cpp sortD_cpp gen_files
 .PHONY: all clean
 .DEFAULT_GOAL = all
 
 all: $(EXEC)
 
-test_c: test.c Makefile
+sort_c: sort.c Makefile
 	@ echo Compiling $@...
 	@ $(CC) $(CCFLAGS) -o $@ $<
 
-testD_cpp: test.cpp Makefile
+sortD_cpp: sort.cpp Makefile
 	@ echo Compiling $@...
 	@ $(CXX) $(CXXFLAGS) -UNDEBUG -o $@ $<
 	
-test_cpp: test.cpp Makefile
+sort_cpp: sort.cpp Makefile
 	@ echo Compiling $@...
 	@ $(CXX) $(CXXFLAGS) -o $@ $<
 

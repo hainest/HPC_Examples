@@ -19,9 +19,9 @@ for my $n (1000000,10000000,50000000) {
 	print "Running $n...\ni = ";
 	for (1..10) {
 		print "$_ ";
-		`./test_c numbers$n $n >> ${n}.c.out`;
-		`./test_cpp numbers$n $n >> ${n}.cpp.out`;
-		`./testD_cpp numbers$n $n >> ${n}.cppD.out`;
+		`./sort_c numbers$n $n >> ${n}.c.out`;
+		`./sort_cpp numbers$n $n >> ${n}.cpp.out`;
+		`./sortD_cpp numbers$n $n >> ${n}.cppD.out`;
 	}
 	print "\n";
 }
