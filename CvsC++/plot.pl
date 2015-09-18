@@ -56,8 +56,8 @@ $win->release();
 
 my $xPos = 0.8*($xMax-$xMin) + $xMin;
 my $yPos = 0.4*($yMax-$yMin) + $yMin; 
-$win->legend(['C++','C'],$xPos,$yPos,{
-	'color'=>\@colors,
+$win->legend(['C','C++'],$xPos,$yPos,{
+	'color'=>[reverse @colors],
 	'linewidth'=>[4,4],
 	'textfraction' => 0.6
 });
