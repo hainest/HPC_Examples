@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-die "Run make first!\n" unless(-f 'test_c' && -f 'test_cpp' && -f 'testD_cpp');
+die "Run make first!\n" unless(-f 'sort_c' && -f 'sort_cpp' && -f 'sortD_cpp');
 
 my @files_to_remove = glob("*.c.out *.cpp.out *.cppD.out");
 
