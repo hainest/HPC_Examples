@@ -5,7 +5,7 @@ include ../Makefile.include
 
 all: $(EXEC)
 
-.PHONY: all clean release
+.PHONY: all clean release dist-clean
 
 release : CXXFLAGS = $(WFLAGS) -O3
 release : $(EXEC)
