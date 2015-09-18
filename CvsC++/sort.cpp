@@ -1,9 +1,9 @@
 #include <fstream>
 #include <algorithm>
 #include <iterator>
-#include <chrono>
 #include <iostream>
 #include <vector>
+#include "stopwatch.hpp"
 
 int main(int argc, char *argv[]) {
 	if(argc != 3) {
@@ -19,15 +19,16 @@ int main(int argc, char *argv[]) {
 	}
 	
 	std::vector<int> x;
+
+	// This is purely an optimization to help reduce the total runtime.
+	// It does not affect the measured runtime.
 	x.reserve(std::stoi(argv[2]));
 	
 	std::copy(std::istream_iterator<int>(fin),{},std::back_inserter(x));
 	
-	using namespace std::chrono;
-	auto start = high_resolution_clock::now();
+	stopwatch sw;
+	sw.start();
 	std::sort(x.begin(),x.end());
-	auto end = high_resolution_clock::now();
-	std::cout << x.size() << ','
-			  << duration_cast<microseconds>(end-start).count()
-			  << std::endl;
+	sw.stop();
+	std::cout << x.size() << ',' << sw.count<float,std::ratio<1,1000000>>() << "\n";
 }
