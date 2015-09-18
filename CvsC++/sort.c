@@ -47,7 +47,6 @@ int main(int argc, char **argv) {
 	struct timeval stop;
 	gettimeofday(&stop, NULL);
 
-//	((tvalAfter.tv_sec - tvalBefore.tv_sec)*1000000L +tvalAfter.tv_usec) - tvalBefore.tv_usec
 	printf("%d,%ld\n",n,((stop.tv_sec - start.tv_sec)*1000000L + stop.tv_usec) - start.tv_usec);
 
 quit:
