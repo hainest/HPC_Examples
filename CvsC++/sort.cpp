@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 	std::vector<int> x(std::stoi(argv[2]));
 	fin.read(reinterpret_cast<char*>(x.data()),x.size()*sizeof(int));
 
-	stopwatch sw;
+	stopwatch<> sw;
 	sw.start();
 	std::sort(x.begin(),x.end());
 	sw.stop();

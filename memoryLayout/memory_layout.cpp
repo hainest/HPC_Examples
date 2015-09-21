@@ -6,10 +6,11 @@
 #include "AoS.hpp"
 #include "SoA.hpp"
 #include <algorithm>
+#include "stopwatch.hpp"
 
 int main() {
 	using valType = float;
-	using tupType = std::tuple<std::string, valType, stopwatch::count_type::rep>;
+	using tupType = std::tuple<std::string, valType, float>;
 	constexpr typename std::vector<valType>::size_type size = 10000000;
 
 	std::vector<tupType> timings;

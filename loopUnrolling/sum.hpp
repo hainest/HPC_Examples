@@ -15,7 +15,7 @@ dataType doSum(const size_t size, collectionType &timings) {
 	std::vector<dataType, aligned_allocator<dataType, 32>> v(size);
 	rand_fill(v);
 
-	stopwatch clock;
+	stopwatch<std::milli,float> clock;
 	dataType sum { };
 
 	clock.start();

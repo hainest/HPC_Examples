@@ -21,7 +21,7 @@ dataType doAoS(const size_t size, collectionType &timings) {
 		f[i].z = i * 4.0f;
 	}
 
-	stopwatch timer;
+	stopwatch<std::milli,float> timer;
 	dataType sum { };
 
 	timer.start();

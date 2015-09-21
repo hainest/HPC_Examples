@@ -46,7 +46,7 @@ void doSoA(const size_t size, collectionType &timings) {
 		str.z[i] = i * 4.0f;
 	}
 
-	stopwatch timer;
+	stopwatch<std::milli,float> timer;
 	dataType sum { };
 
 	sum = 0.0f;
