@@ -15,7 +15,7 @@ public:
 		end = std::chrono::high_resolution_clock::now();
 	}
 
-	template <typename count_type = float, typename period = std::ratio<1,1000>>
+	template <typename period = std::micro, typename count_type = size_t>
 	inline count_type count(void) {
 		using namespace std::chrono;
 		return duration_cast<duration<count_type,period>>(end - begin).count();
