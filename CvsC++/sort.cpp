@@ -11,24 +11,19 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 	
-	std::ifstream fin{argv[1]};
+	std::ifstream fin{argv[1],std::ios::binary};
 	
 	if(!fin) {
 		std::cerr << "Unable to open file " << argv[1] << "\n";
 		return -1;
 	}
 	
-	std::vector<int> x;
+	std::vector<int> x(std::stoi(argv[2]));
+	fin.read(reinterpret_cast<char*>(x.data()),x.size()*sizeof(int));
 
-	// This is purely an optimization to help reduce the total runtime.
-	// It does not affect the measured runtime.
-	x.reserve(std::stoi(argv[2]));
-	
-	std::copy(std::istream_iterator<int>(fin),{},std::back_inserter(x));
-	
 	stopwatch sw;
 	sw.start();
 	std::sort(x.begin(),x.end());
 	sw.stop();
-	std::cout << x.size() << ',' << sw.count<float,std::ratio<1,1000000>>() << "\n";
+	std::cout << x.size() << ',' << sw.count() << "\n";
 }
