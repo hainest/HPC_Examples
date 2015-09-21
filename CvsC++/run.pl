@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 
-die "Run make first!\n" unless(-f 'sort_c' && -f 'sort_cpp' && -f 'sortD_cpp');
+die "Run make first!\n" unless(-f 'sort_c' && -f 'sort_cpp');
 
-my @files_to_remove = glob("*.c.out *.cpp.out *.cppD.out");
+my @files_to_remove = glob("*.c.out *.cpp.out");
 
 if (@files_to_remove) {
 	print "Remove files? ";
@@ -21,7 +21,6 @@ for my $n (1000000,10000000,50000000) {
 		print "$_ ";
 		`./sort_c numbers$n $n >> ${n}.c.out`;
 		`./sort_cpp numbers$n $n >> ${n}.cpp.out`;
-		`./sortD_cpp numbers$n $n >> ${n}.cppD.out`;
 	}
 	print "\n";
 }
